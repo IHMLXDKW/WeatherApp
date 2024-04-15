@@ -1,0 +1,21 @@
+html
+  head
+    title 7-Day Forecast
+  body
+    h1 7-Day Forecast
+    form(action="/forecast", method="GET")
+      input(type="text", name="city", placeholder="Enter city name")
+      button(type="submit") Get Forecast
+
+    if forecastData
+      if forecastData.list
+        each forecast in forecastData.list
+          div
+            p Date: #{forecast.dt_txt}
+            p Temperature (in °F): #{((forecast.main.temp * 1.8) - 459.67).toFixed(2)} °F
+            p Temperature (in °C): #{(forecast.main.temp - 273.15).toFixed(2)} °C
+            p Description: #{forecast.weather[0].description}
+      else
+        p Forecast data not available
+    else
+      p No forecast data available
