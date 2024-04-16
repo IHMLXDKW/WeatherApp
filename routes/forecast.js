@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
         const response = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=8ee62bb90f97ff56f5f174c8926c5aa1`);
         const forecastData = response.data;
 
-        // Filter the forecast data to include only 7am, 1pm, 6pm, and 10pm for each day
+        // Filter the forecast data to include only 6am, 12pm, 6pm, and 12am for each day
         const filteredForecast = forecastData.list.filter(forecast => {
             const time = new Date(forecast.dt_txt).getHours();
             return time === 6 || time === 12 || time === 18 || time === 0;

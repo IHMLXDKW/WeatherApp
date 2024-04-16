@@ -1,5 +1,6 @@
 const express = require('express');
 const connectDB = require('./database/db');
+const homeRouter = require('./routes/home');
 const forecastRouter = require('./routes/forecast');
 const path = require('path');
 
@@ -11,6 +12,7 @@ app.set('view engine', 'pug');
 app.use(express.json());
 connectDB();
 
+app.use('/', homeRouter);
 app.use('/forecast', forecastRouter);
 
 const PORT = process.env.PORT || 5000;
