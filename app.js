@@ -2,6 +2,7 @@ const express = require('express');
 const connectDB = require('./database/db');
 const homeRouter = require('./routes/home');
 const forecastRouter = require('./routes/forecast');
+const authRouter = require('./routes/auth');
 const path = require('path');
 
 const app = express();
@@ -14,6 +15,8 @@ connectDB();
 
 app.use('/', homeRouter);
 app.use('/forecast', forecastRouter);
+app.use(express.urlencoded({ extended: true }));
+app.use('/auth', authRouter);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
