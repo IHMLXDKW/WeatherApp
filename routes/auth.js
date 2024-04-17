@@ -12,15 +12,16 @@ router.post('/signin', async (req, res) => {
     return res.render('signin', { error: 'Please provide both username and password' });
   }
   try {
+    // Find the user with the provided username in the database
     const user = await User.findOne({ username });
     if (!user) {
       return res.render('signin', { error: 'Invalid username or password' });
     }
-    const validPassword = await user.comparePassword(password);
-    if (!validPassword) {
+    // Compare the provided password with the password stored in the database
+    if (user.password !== password) {
       return res.render('signin', { error: 'Invalid username or password' });
     }
-
+    // If authentication is successful, redirect to the forecast page
     res.redirect('/forecast');
   } catch (error) {
     console.error(error);
