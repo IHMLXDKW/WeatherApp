@@ -1,9 +1,24 @@
 html
   head
-    title Weather App
+    title Weather App - Home
+    link(rel="stylesheet", href="/styles/home.css")
+    script.
+      const backgrounds = ['weather1.jpg', 'weather2.jpg', 'weather3.jpg', 'weather4.jpg', 'weather5.jpg'];
+      let currentIndex = 0;
+      function changeBackground() {
+        currentIndex = (currentIndex + 1) % backgrounds.length;
+        document.body.style.backgroundImage = `url('/images/${backgrounds[currentIndex]}')`;
+        document.body.style.backgroundSize = 'cover';
+        document.body.style.backgroundPosition = 'center';
+        document.body.style.backgroundRepeat = 'no-repeat';
+      }
+      setInterval(changeBackground, 10000);
   body
-    h1 Welcome to the Weather App
-    p This is a simple weather forecast application.
-    p To get started, please enter a city name in the search box.
-    br
-    a(href="/auth/signin") Sign In
+    div.container
+      header
+        h1 Welcome to the Weather App
+        p This is a simple weather forecast application.
+        p To get started, please sign in.
+      main
+        br
+        a(href="/auth/signin") Sign In
