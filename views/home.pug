@@ -15,10 +15,10 @@ html
       setInterval(changeBackground, 10000);
   body
     div.container
-      header
+      header.transparent-header
         h1 Welcome to the Weather App
         p This is a simple weather forecast application.
         p To get started, please sign in.
-      main
-        br
-        a(href="/auth/signin") Sign In
+        button.btn-signin(onclick="window.location.href='/auth/signin'") Sign In
+      footer.transparent-footer
+        p Created by Curtis and Roshan

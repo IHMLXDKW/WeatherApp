@@ -1,14 +1,19 @@
 html
   head
     title Sign In
+    link(rel="stylesheet", href="/styles/signin.css")
   body
-    h1 Sign In
-    form(action="/auth/signin", method="POST")
-      input(type="text", name="username", placeholder="Enter username")
-      br
-      input(type="password", name="password", placeholder="Enter password")
-      br
-      br
-      button(type="submit") Sign In
-    if error
-      p.error= error
+    header.transparent-header
+      h1 Sign In To Your Account
+    .centered-container
+      form.translucent-background(action="/auth/signin", method="POST")
+        input(type="text", name="username", placeholder="Enter username", class="input-box")
+        br
+        input(type="password", name="password", placeholder="Enter password", class="input-box")
+        br
+        br
+        button(type="submit", class="submit-button") Sign In
+        if error
+          p.error= error
+    footer.transparent-footer
+      p Created by Curtis and Roshan
