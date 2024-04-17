@@ -1,26 +1,57 @@
 html
   head
     title 5-Day Forecast
-  body5
-    h1 5-Day Forecast
-    form(action="/forecast", method="GET")
-      input(type="text", name="city", placeholder="Enter city name")
-      button(type="submit") Get Forecast
+    link(rel="stylesheet", href="/styles/forecast.css")
+  body
+    header.transparent-header
+      h1 5-Day Forecast
+      form.search-form(action="/forecast", method="GET")
+        input(type="text", name="city", placeholder="Enter city name")
+        button(type="submit") Get Forecast
 
     if forecastData
       if forecastData.list
-        each forecast in forecastData.list
-          div
-            p Date: #{forecast.dt_txt}
-            p Temperature (in °F): #{((forecast.main.temp * 1.8) - 459.67).toFixed(2)} °F
-            p Temperature (in °C): #{(forecast.main.temp - 273.15).toFixed(2)} °C
-            p Description: #{forecast.weather[0].description}
-            p Wind Speed: #{forecast.wind.speed} m/s
-            p Humidity: #{forecast.main.humidity}%
-            p Feels Like (in °F): #{((forecast.main.feels_like * 1.8) - 459.67).toFixed(2)} °F
-            p Feels Like (in °C): #{(forecast.main.feels_like - 273.15).toFixed(2)} °C
-            p Visibility: #{forecast.visibility} meters
+        .forecast-container
+          each forecast in forecastData.list
+            .forecast-card
+              div.date-time
+                p 
+                  strong Date: #{forecast.dt_txt}
+                br
+              div.temperature
+                p 
+                  strong Temperature (in °C): 
+                | #{(forecast.main.temp - 273.15).toFixed(1)} °C
+                p 
+                  strong Temperature (in °F): 
+                | #{((forecast.main.temp * 1.8) - 459.67).toFixed(2)} °F
+                p 
+                  strong Description: 
+                | #{forecast.weather[0].description}
+              div.wind-humidity
+                p 
+                  strong Wind Speed: 
+                | #{forecast.wind.speed} m/s
+                p 
+                  strong Humidity: 
+                | #{forecast.main.humidity}%
+              div.feels-like
+                p 
+                  strong Feels Like (in °C): 
+                | #{(forecast.main.feels_like - 273.15).toFixed(1)} °C
+                p 
+                  strong Feels Like (in °F): 
+                | #{((forecast.main.feels_like * 1.8) - 459.67).toFixed(2)} °F
+              div.visibility
+                p 
+                  strong Visibility: 
+                | #{forecast.visibility} meters
       else
-        p Forecast data not available
+        p.translucent-background
+          strong Forecast data not available
     else
-      p No forecast data available
+      p.translucent-background
+        strong No forecast data available
+
+    footer.transparent-footer
+      p Created by Curtis and Roshan
