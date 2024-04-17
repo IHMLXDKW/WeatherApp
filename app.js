@@ -4,6 +4,7 @@ const homeRouter = require('./routes/home');
 const forecastRouter = require('./routes/forecast');
 const authRouter = require('./routes/auth');
 const path = require('path');
+const bodyParser = require('body-parser');
 
 const app = express();
 
@@ -21,7 +22,8 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/styles', express.static(path.join(__dirname, 'styles')));
 
 // Parse JSON bodies
-app.use(express.json());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
 // Connect to the database
 connectDB();

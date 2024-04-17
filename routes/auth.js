@@ -8,6 +8,7 @@ router.get('/signin', (req, res) => {
 
 router.post('/signin', async (req, res) => {
   const { username, password } = req.body;
+  console.log(username + " " + password)
   if (!username || !password) {
     return res.render('signin', { error: 'Please provide both username and password' });
   }
