@@ -56,3 +56,17 @@ button:hover {
     padding: 20px;
     margin-bottom: 20px;
 }
+
+.forecast-card p {
+    margin: 10px 0;
+}
+
+.forecast-card p:first-child {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.forecast-card p:not(:first-child) {
+    font-size: 18px;
+    color: #555;
+}
